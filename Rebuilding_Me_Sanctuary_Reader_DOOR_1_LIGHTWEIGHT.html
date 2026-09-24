@@ -200,10 +200,6 @@ prev.onclick=()=>{
   else spread=spread<=1?0:spread-2;
   render("prev");
 };
-document.getElementById("continueBtn").onclick=(e)=>{
-  e.preventDefault();
-  alert("Door #1 is complete. This button is ready for us to connect to Isha's Door #2 transition when we lock that link.");
-};
 addEventListener("resize",()=>{ if(isMobile() && spread>=pages.length) spread=pages.length-1; render(); });
 
 document.getElementById("openGift").onclick=()=>{
