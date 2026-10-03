@@ -6,8 +6,13 @@
   <title>Transition Room | The Self-Love Sanctuary</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
+      padding: 0;
       width: 100%;
       height: 100%;
       background: #000;
@@ -15,19 +20,23 @@
     }
 
     .transition-room {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #000;
       overflow: hidden;
     }
 
     .transition-room video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
+      z-index: 1;
     }
 
     .door-hotspot {
@@ -37,17 +46,20 @@
       transform: translate(-50%, -50%);
       width: 34%;
       height: 8%;
-      z-index: 10;
+      z-index: 100;
       cursor: pointer;
       background: transparent;
       border: none;
       padding: 0;
+      margin: 0;
       text-decoration: none;
       display: block;
+      outline: none;
     }
 
-    .door-hotspot:hover {
-      background: rgba(255, 255, 255, 0.02);
+    .door-hotspot:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
     }
   </style>
 </head>
