@@ -6,6 +6,10 @@
   <title>Transition Room | The Self-Love Sanctuary</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -34,7 +38,6 @@
       object-fit: contain;
       z-index: 1;
       display: block;
-      pointer-events: none;
     }
 
     .door-hotspot {
@@ -50,11 +53,10 @@
       outline: none;
       -webkit-user-select: none;
       user-select: none;
-      pointer-events: all;
     }
 
-    .door-hotspot:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.1);
+    .door-hotspot:hover {
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -67,25 +69,25 @@
     </video>
   </div>
 
-  <a class="door-hotspot"
+  <button class="door-hotspot"
      id="doorHotspot"
-     href="NEVER-ENDING%20PROMISES%20ROOM.mp4"
      aria-label="Come and Open the Door"
      title="Come and Open the Door"
-  ></a>
+  ></button>
 
   <script>
     const video = document.getElementById('transitionVideo');
     const hotspot = document.getElementById('doorHotspot');
+    const container = video.parentElement;
 
     function positionHotspot() {
-      const videoRect = video.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
       
-      // Calculate button position based on video display
-      const buttonWidth = videoRect.width * 0.34;
-      const buttonHeight = videoRect.height * 0.08;
-      const buttonLeft = videoRect.left + (videoRect.width * 0.5) - (buttonWidth * 0.5);
-      const buttonTop = videoRect.top + (videoRect.height * 0.88) - (buttonHeight * 0.5);
+      // Calculate button position based on container viewport
+      const buttonWidth = containerRect.width * 0.34;
+      const buttonHeight = containerRect.height * 0.08;
+      const buttonLeft = containerRect.left + (containerRect.width * 0.5) - (buttonWidth * 0.5);
+      const buttonTop = containerRect.top + (containerRect.height * 0.88) - (buttonHeight * 0.5);
       
       hotspot.style.left = buttonLeft + 'px';
       hotspot.style.top = buttonTop + 'px';
@@ -93,19 +95,34 @@
       hotspot.style.height = buttonHeight + 'px';
     }
 
-    // Position immediately and on resize
-    positionHotspot();
+    // Position on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', positionHotspot);
+    } else {
+      positionHotspot();
+    }
+    
+    // Reposition on resize and orientation change
     window.addEventListener('resize', positionHotspot);
     window.addEventListener('orientationchange', positionHotspot);
     
-    // Reposition periodically in case video dimensions change
-    setInterval(positionHotspot, 500);
+    // Reposition periodically
+    setInterval(positionHotspot, 300);
 
-    // Handle click with direct navigation
-    hotspot.onclick = function() {
+    // Handle click
+    hotspot.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
-      return false;
-    };
+    });
+
+    // Keyboard support
+    hotspot.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
+      }
+    });
   </script>
 
 </body>
