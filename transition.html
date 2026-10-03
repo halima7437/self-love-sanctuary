@@ -55,6 +55,12 @@
       text-decoration: none;
       display: block;
       outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .door-hotspot:hover {
+      background: transparent;
     }
 
     .door-hotspot:focus {
@@ -76,7 +82,15 @@
      href="NEVER-ENDING%20PROMISES%20ROOM.mp4"
      aria-label="Come and Open the Door"
      title="Come and Open the Door"
+     role="button"
   ></a>
+
+  <script>
+    document.querySelector('.door-hotspot').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
+    });
+  </script>
 
 </body>
 </html>
