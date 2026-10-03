@@ -54,10 +54,6 @@
       -webkit-user-select: none;
       user-select: none;
     }
-
-    .door-hotspot:hover {
-      opacity: 0.5;
-    }
   </style>
 </head>
 
@@ -69,11 +65,12 @@
     </video>
   </div>
 
-  <button class="door-hotspot"
+  <a class="door-hotspot"
      id="doorHotspot"
+     href="javascript:void(0)"
      aria-label="Come and Open the Door"
      title="Come and Open the Door"
-  ></button>
+  ></a>
 
   <script>
     const video = document.getElementById('transitionVideo');
@@ -96,30 +93,28 @@
     }
 
     // Position on load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', positionHotspot);
-    } else {
-      positionHotspot();
-    }
+    window.addEventListener('load', positionHotspot);
     
     // Reposition on resize and orientation change
     window.addEventListener('resize', positionHotspot);
     window.addEventListener('orientationchange', positionHotspot);
     
-    // Reposition periodically
-    setInterval(positionHotspot, 300);
+    // Reposition periodically to handle dynamic changes
+    setInterval(positionHotspot, 500);
 
-    // Handle click
+    // Handle click - navigate to video file directly
     hotspot.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
+      // Navigate to the video file - browser will play it or download it
       window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
     });
 
-    // Keyboard support
-    hotspot.addEventListener('keypress', function(e) {
+    // Also handle keyboard
+    hotspot.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        e.stopPropagation();
         window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
       }
     });
