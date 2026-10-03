@@ -31,16 +31,12 @@
       height: 100%;
       object-fit: contain;
       z-index: 1;
+      display: block;
     }
 
     .door-hotspot {
       position: absolute;
-      left: 50%;
-      bottom: 12%;
-      transform: translate(-50%, 50%);
-      width: 34%;
-      height: 8%;
-      z-index: 10;
+      z-index: 100;
       cursor: pointer;
       background: transparent;
       border: none;
@@ -49,6 +45,12 @@
       text-decoration: none;
       display: block;
       outline: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .door-hotspot:hover {
+      background: rgba(255, 255, 255, 0.01);
     }
   </style>
 </head>
@@ -56,15 +58,50 @@
 <body>
 
   <div class="transition-room">
-    <video autoplay playsinline controls>
+    <video id="transitionVideo" autoplay playsinline controls>
       <source src="transition-room.mp4" type="video/mp4">
     </video>
     <a class="door-hotspot"
+       id="doorHotspot"
        href="NEVER-ENDING%20PROMISES%20ROOM.mp4"
        aria-label="Come and Open the Door"
        title="Come and Open the Door"
     ></a>
   </div>
+
+  <script>
+    const video = document.getElementById('transitionVideo');
+    const hotspot = document.getElementById('doorHotspot');
+    const container = video.parentElement;
+
+    function positionHotspot() {
+      const rect = container.getBoundingClientRect();
+      const videoRect = video.getBoundingClientRect();
+      
+      // Calculate button position based on video display
+      const buttonWidth = videoRect.width * 0.34;
+      const buttonHeight = videoRect.height * 0.08;
+      const buttonLeft = videoRect.left + (videoRect.width * 0.5) - (buttonWidth * 0.5);
+      const buttonTop = videoRect.top + (videoRect.height * 0.88) - (buttonHeight * 0.5);
+      
+      hotspot.style.left = buttonLeft + 'px';
+      hotspot.style.top = buttonTop + 'px';
+      hotspot.style.width = buttonWidth + 'px';
+      hotspot.style.height = buttonHeight + 'px';
+      hotspot.style.position = 'fixed';
+    }
+
+    // Position on load and resize
+    window.addEventListener('load', positionHotspot);
+    window.addEventListener('resize', positionHotspot);
+    video.addEventListener('loadedmetadata', positionHotspot);
+
+    // Handle click
+    hotspot.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = this.href;
+    });
+  </script>
 
 </body>
 </html>
