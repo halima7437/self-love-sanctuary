@@ -16,7 +16,9 @@
     }
 
     .transition-room {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       background: #000;
@@ -32,10 +34,11 @@
       object-fit: contain;
       z-index: 1;
       display: block;
+      pointer-events: none;
     }
 
     .door-hotspot {
-      position: absolute;
+      position: fixed;
       z-index: 100;
       cursor: pointer;
       background: transparent;
@@ -47,10 +50,11 @@
       outline: none;
       -webkit-user-select: none;
       user-select: none;
+      pointer-events: all;
     }
 
-    .door-hotspot:hover {
-      background: rgba(255, 255, 255, 0.01);
+    .door-hotspot:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
@@ -61,21 +65,20 @@
     <video id="transitionVideo" autoplay playsinline controls>
       <source src="transition-room.mp4" type="video/mp4">
     </video>
-    <a class="door-hotspot"
-       id="doorHotspot"
-       href="NEVER-ENDING%20PROMISES%20ROOM.mp4"
-       aria-label="Come and Open the Door"
-       title="Come and Open the Door"
-    ></a>
   </div>
+
+  <a class="door-hotspot"
+     id="doorHotspot"
+     href="NEVER-ENDING%20PROMISES%20ROOM.mp4"
+     aria-label="Come and Open the Door"
+     title="Come and Open the Door"
+  ></a>
 
   <script>
     const video = document.getElementById('transitionVideo');
     const hotspot = document.getElementById('doorHotspot');
-    const container = video.parentElement;
 
     function positionHotspot() {
-      const rect = container.getBoundingClientRect();
       const videoRect = video.getBoundingClientRect();
       
       // Calculate button position based on video display
@@ -88,19 +91,21 @@
       hotspot.style.top = buttonTop + 'px';
       hotspot.style.width = buttonWidth + 'px';
       hotspot.style.height = buttonHeight + 'px';
-      hotspot.style.position = 'fixed';
     }
 
-    // Position on load and resize
-    window.addEventListener('load', positionHotspot);
+    // Position immediately and on resize
+    positionHotspot();
     window.addEventListener('resize', positionHotspot);
-    video.addEventListener('loadedmetadata', positionHotspot);
+    window.addEventListener('orientationchange', positionHotspot);
+    
+    // Reposition periodically in case video dimensions change
+    setInterval(positionHotspot, 500);
 
-    // Handle click
-    hotspot.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.location.href = this.href;
-    });
+    // Handle click with direct navigation
+    hotspot.onclick = function() {
+      window.location.href = 'NEVER-ENDING%20PROMISES%20ROOM.mp4';
+      return false;
+    };
   </script>
 
 </body>
