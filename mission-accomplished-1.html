@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Mission Accomplished | The Self-Love Sanctuary</title>
 
@@ -11,31 +11,32 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     background: #000;
+    overflow: hidden;
 }
 
 .room {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 .room video {
-    width: auto;
-    height: 100vh;
-    max-width: 100%;
-    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
 }
 
-/* Mobile-friendly hotspots - larger touch targets */
+/* LARGE MOBILE-FRIENDLY HOTSPOTS */
 .hotspot {
     position: absolute;
-    z-index: 10;
+    z-index: 15;
     display: block;
     font-size: 0;
     border: none;
@@ -45,37 +46,58 @@ html, body {
     outline: none;
     -webkit-user-select: none;
     user-select: none;
-    background: transparent;
-    min-width: 60px;  /* Minimum touch target */
-    min-height: 60px; /* Minimum touch target */
+    background: rgba(255, 255, 255, 0.1);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Show borders on mobile for debugging - remove later */
+@media (max-width: 768px) {
+    .hotspot {
+        border: 2px solid rgba(255, 0, 0, 0.5);
+    }
 }
 
 .return-home {
-    left: 45%;
-    top: 65%;
-    width: 12%;
-    height: 8%;
+    left: 35%;
+    top: 60%;
+    width: 20%;
+    height: 12%;
+    min-width: 80px;
+    min-height: 60px;
 }
 
 .replay-day-one {
-    left: 52%;
-    top: 65%;
-    width: 12%;
-    height: 8%;
+    right: 35%;
+    top: 60%;
+    width: 20%;
+    height: 12%;
+    min-width: 80px;
+    min-height: 60px;
 }
 
 .marketplace {
-    left: 40%;
-    top: 68%;
-    width: 12%;
-    height: 8%;
+    left: 30%;
+    top: 75%;
+    width: 20%;
+    height: 12%;
+    min-width: 80px;
+    min-height: 60px;
 }
 
 .continue-journey {
-    left: 25%;
-    top: 55%;
-    width: 50%;
-    height: 5%;
+    left: 10%;
+    top: 50%;
+    width: 80%;
+    height: 15%;
+    min-width: 100px;
+    min-height: 80px;
+}
+
+/* Active state for mobile feedback */
+.hotspot:active {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.8;
 }
 </style>
 </head>
