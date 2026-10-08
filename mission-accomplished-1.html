@@ -31,25 +31,51 @@ html, body {
     display: block;
     object-fit: contain;
 }
-    .return-home {
-  position: absolute;
-  left:48%;
-  top: 69%;
-  width: 5%;
-  height: 5%;
-  z-index: 10;
-  display: block;
-  font-size: 0;
+
+/* Mobile-friendly hotspots - larger touch targets */
+.hotspot {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    font-size: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: transparent;
+    min-width: 60px;  /* Minimum touch target */
+    min-height: 60px; /* Minimum touch target */
 }
-    .replay-day-one {
-  position: absolute;
-  left:54%;
-  top: 69%;
-  width: 5%;
-  height: 5%;
-  z-index: 10;
-  display: block;
-  font-size: 0;
+
+.return-home {
+    left: 45%;
+    top: 65%;
+    width: 12%;
+    height: 8%;
+}
+
+.replay-day-one {
+    left: 52%;
+    top: 65%;
+    width: 12%;
+    height: 8%;
+}
+
+.marketplace {
+    left: 40%;
+    top: 68%;
+    width: 12%;
+    height: 8%;
+}
+
+.continue-journey {
+    left: 25%;
+    top: 55%;
+    width: 50%;
+    height: 5%;
 }
 </style>
 </head>
@@ -61,31 +87,26 @@ html, body {
         <source src="REBUILD%20ME%20MISSION%20ACCOMPLISH%20ROOM.mp4" type="video/mp4">
         Your browser does not support the video.
     </video>
-   <a class="return-home" href="Rebuilding_Me_Sanctuary_Reader_DOOR_1_LIGHTWEIGHT.html">RETURN HOME</a>
-    <a class="replay-day-one" href="index.html">REPLAY DAY ONE</a>
-    <a href="marketplace.html"
-       style="
-position:absolute;
-left:44%;
-top:70%;
-width:5%;
-height:8%;
-z-index:10;
-"
-        aria-label="Visit the Sanctuary Marketplace">
-        </a>
-    <a 
-         
-    aria-label="Continue to My Next Journey" href="transition.html"
-        style="
-        position:absolute;
-     top:57%;
-    width:40%;
-    height:3%;
-    z-index:11;
-    left:30%;
-        ">
-        </a>
+    
+    <a class="hotspot return-home" 
+       href="Rebuilding_Me_Sanctuary_Reader_DOOR_1_LIGHTWEIGHT.html"
+       aria-label="Return Home">
+    </a>
+    
+    <a class="hotspot replay-day-one" 
+       href="index.html"
+       aria-label="Replay Day One">
+    </a>
+    
+    <a class="hotspot marketplace" 
+       href="marketplace.html"
+       aria-label="Visit the Sanctuary Marketplace">
+    </a>
+    
+    <a class="hotspot continue-journey"
+       href="transition.html"
+       aria-label="Continue to My Next Journey">
+    </a>
 </div>
 
 </body>
