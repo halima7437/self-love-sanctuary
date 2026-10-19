@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Day Two Mission Accomplished | The Self-Love Sanctuary</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+.room {
+  position: relative;
+  margin: 0 auto;
+  width: min(100vw, 56.25vh);
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+.room video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  z-index: 1;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.hotspot {
+  position: absolute;
+  display: block;
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 70px;
+  min-height: 50px;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hotspot:active {
+  background: rgba(255,255,255,0.15);
+  opacity: 0.9;
+}
+.marketplace {
+  left: 26%;
+  top: 65%;
+  width: 19%;
+  height: 8%;
+}
+.return-home {
+  left: 47%;
+  top: 65%;
+  width: 9%;
+  height: 6%;
+}
+.replay-day-one {
+  left: 62%;
+  top: 65%;
+  width: 9%;
+  height: 6%;
+}
+.continue-journey {
+  left:59%;
+  top: 57%;
+  width:21%;
+  height:8%;
+}
+</style>
+</head>
+<body>
+  <div class="room">
+    <video autoplay playsinline controls>
+      <source src="MISSION%20ACCOMPLISHED%20ROOM.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <a class="hotspot marketplace" href="marketplace.html" aria-label="Visit the Sanctuary Marketplace"></a>
+      <a class="hotspot replay-day-one" href="door-3.html" aria-label="Replay Day Two"></a>
+      <a class="hotspot return-home" href="index.html" aria-label="Return Home"></a>
+      <a class="hotspot continue-journey" href="DOOR%20%234%20ROOM.mp4" aria-label="Continue to Door Four"></a>
+    </div>
+  </div>
+</body>
+</html>
