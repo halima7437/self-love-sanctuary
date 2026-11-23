@@ -73,6 +73,46 @@ footer {
     Explore at your own pace. You are welcome here.
   </p>
 
+  <style>
+  .sanctuary-gift-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1100px;
+    margin: 30px auto;
+  }
+
+  .sanctuary-gift-gallery a {
+    display: block;
+  }
+
+  .sanctuary-gift-gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 700px) {
+    .sanctuary-gift-gallery {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+    }
+  }
+</style>
+
+<section aria-label="Sanctuary Gift Cards">
+  <div class="sanctuary-gift-gallery">
+
+    <!-- GIFT CARD ONE: DOORS ONE AND TWO -->
+    <a href="door-1.html">
+      <img
+        src="Card%20FOR%20DOOR%201%20AND%202.png"
+        alt="Sanctuary Gift Card for Doors One and Two">
+    </a>
+
+  </div>
+</section>
   <h2 class="section">🌸 Enter Our Sanctuary Doors</h2>
   <div class="grid">
     <div class="card">
